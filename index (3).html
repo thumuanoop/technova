@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technova - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">Technova</div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="themes.html">Themes</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Innovate. Create. Elevate.</h1>
+            <p>Join Technova and transform your ideas into reality.</p>
+            <a href="#pricing" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <section id="features" class="features container">
+        <h2>Key Features</h2>
+        <div class="grid">
+            <div class="feature-item card">
+                <h3>Cutting-Edge Technology</h3>
+                <p>Leverage the latest tools and frameworks.</p>
+            </div>
+            <div class="feature-item card">
+                <h3>Collaborative Environment</h3>
+                <p>Work with a vibrant community of innovators.</p>
+            </div>
+            <div class="feature-item card">
+                <h3>Expert Mentorship</h3>
+                <p>Learn from industry leaders and seasoned professionals.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing container">
+        <h2>Pricing Plans</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Hackathon</h3>
+                <p>Perfect for competitive coding enthusiasts.</p>
+                <p>Team Size:</p>
+                <button class="btn team-size-btn" data-size="1">1</button>
+                <button class="btn team-size-btn" data-size="2">2</button>
+                <button class="btn team-size-btn" data-size="3">3</button>
+                <button class="btn team-size-btn" data-size="4">4</button>
+                <p id="pricing-display"></p>
+                <button class="btn registration-type-btn" data-type="hackathon">Register for Hackathon</button>
+            </div>
+            <div class="card">
+                <h3>Coding Workshops</h3>
+                <p>Enhance your coding skills with hands-on sessions.</p>
+                <p>Team Size:</p>
+                <button class="btn team-size-btn" data-size="1">1</button>
+                <button class="btn team-size-btn" data-size="2">2</button>
+                <button class="btn team-size-btn" data-size="3">3</button>
+                <button class="btn team-size-btn" data-size="4">4</button>
+                <p id="pricing-display-coding"></p>
+                <button class="btn registration-type-btn" data-type="coding">Register for Coding</button>
+            </div>
+            <div class="card">
+                <h3>Combo Pack</h3>
+                <p>Access to both hackathons and coding workshops.</p>
+                <p>Team Size:</p>
+                <button class="btn team-size-btn" data-size="1">1</button>
+                <button class="btn team-size-btn" data-size="2">2</button>
+                <button class="btn team-size-btn" data-size="3">3</button>
+                <button class="btn team-size-btn" data-size="4">4</button>
+                <p id="pricing-display-combo"></p>
+                <button class="btn registration-type-btn" data-type="combo">Register for Combo</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact container">
+        <h2>Contact Us</h2>
+        <p>Have questions? Reach out to us!</p>
+        <form class="form-group">
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Technova. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Update pricing display for each card
+        function updatePricingDisplay(type, elementId) {
+            const pricingElement = document.getElementById(elementId);
+            if (!pricingElement) return;
+
+            const price = pricing[type][selectedTeamSize - 1];
+            pricingElement.textContent = `Price: $${price}`;
+        }
+
+        // Modify the existing updatePricing function to handle multiple pricing displays
+        const originalUpdatePricing = updatePricing;
+        updatePricing = () => {
+            originalUpdatePricing(); // Call the original function for the main pricing display
+            updatePricingDisplay("hackathon", "pricing-display");
+            updatePricingDisplay("coding", "pricing-display-coding");
+            updatePricingDisplay("combo", "pricing-display-combo");
+        };
+
+        // Initial update when the page loads
+        document.addEventListener("DOMContentLoaded", () => {
+            updatePricing();
+        });
+    </script>
+</body>
+</html>
+
