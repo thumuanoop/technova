@@ -3,129 +3,1601 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technova - Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>TechNova 2025 - Innovation Unleashed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+    <style>
+        :root {
+            --background: hsl(222, 84%, 5%);
+            --foreground: hsl(210, 40%, 98%);
+            --card: hsl(217, 33%, 17%);
+            --card-foreground: hsl(210, 40%, 98%);
+            --primary: hsl(214, 100%, 27%);
+            --primary-foreground: hsl(210, 40%, 98%);
+            --secondary: hsl(215, 28%, 17%);
+            --muted: hsl(215, 28%, 17%);
+            --muted-foreground: hsl(217, 11%, 65%);
+            --accent: hsl(214, 100%, 59%);
+            --accent-foreground: hsl(210, 40%, 98%);
+            --border: hsl(217, 33%, 17%);
+            --radius: 0.75rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .header {
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            color: var(--accent);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo .accent {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            color: var(--muted-foreground);
+            cursor: pointer;
+            transition: color 0.3s;
+            font-family: inherit;
+        }
+
+        .nav-links button:hover {
+            color: var(--foreground);
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 0;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--background) 0%, var(--card) 100%);
+        }
+
+        .hero-bg::before,
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .hero-bg::before {
+            top: 25%;
+            left: 25%;
+            width: 16rem;
+            height: 16rem;
+            background: hsl(214, 100%, 59%, 0.1);
+        }
+
+        .hero-bg::after {
+            bottom: 25%;
+            right: 25%;
+            width: 12rem;
+            height: 12rem;
+            background: hsl(214, 100%, 27%, 0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .hero-text {
+            space-y: 2rem;
+        }
+
+        .date-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: hsl(214, 100%, 59%, 0.2);
+            color: var(--accent);
+            border: 1px solid hsl(214, 100%, 59%, 0.3);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            color: var(--muted-foreground);
+            margin-top: 0.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--accent-foreground);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: hsl(214, 100%, 55%);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--foreground);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--card);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .feature-card {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: hsl(214, 100%, 59%, 0.5);
+        }
+
+        .feature-card:last-child {
+            grid-column: span 2;
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-alt {
+            background: hsl(217, 33%, 17%, 0.5);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        .day {
+            margin-bottom: 3rem;
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .day-number {
+            background: var(--accent);
+            color: var(--accent-foreground);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.125rem;
+            margin-right: 1rem;
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .timeline-cards {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .timeline-cards.three-cols {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .timeline-card {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .timeline-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: var(--accent);
+            margin-right: 0.75rem;
+        }
+
+        .timeline-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .timeline-details {
+            color: var(--muted-foreground);
+        }
+
+        .timeline-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-detail svg {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Registration Section */
+        .team-selector {
+            max-width: 32rem;
+            margin: 0 auto 3rem;
+        }
+
+        .team-selector h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .team-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .team-option {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .team-option:hover {
+            transform: scale(1.05);
+            border-color: hsl(214, 100%, 59%, 0.5);
+        }
+
+        .team-option.selected {
+            background: var(--accent);
+            color: var(--accent-foreground);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .team-icon {
+            width: 2rem;
+            height: 2rem;
+            color: var(--accent);
+            margin: 0 auto 0.5rem;
+        }
+
+        .team-option.selected .team-icon {
+            color: var(--accent-foreground);
+        }
+
+        .team-label {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-subtitle {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .team-option.selected .team-subtitle {
+            color: var(--accent-foreground);
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            gap: 2rem;
+            max-width: 96rem;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .pricing-card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            border-color: hsl(214, 100%, 59%, 0.5);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, hsl(214, 100%, 59%, 0.2) 0%, hsl(214, 100%, 27%, 0.2) 100%);
+            border-color: hsl(214, 100%, 59%, 0.5);
+        }
+
+        .pricing-card.featured:hover {
+            border-color: var(--accent);
+        }
+
+        .best-value {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: var(--accent-foreground);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-icon {
+            width: 3rem;
+            height: 3rem;
+            color: var(--accent);
+            margin: 0 auto 1rem;
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-subtitle {
+            color: var(--muted-foreground);
+        }
+
+        .pricing-price {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-description {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .check-icon {
+            width: 1rem;
+            height: 1rem;
+            color: var(--accent);
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Registration Links */
+        .registration-links {
+            margin-top: 3rem;
+            max-width: 32rem;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: none;
+        }
+
+        .registration-links.visible {
+            display: block;
+        }
+
+        .registration-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+        }
+
+        .registration-box h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .registration-message {
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+
+        /* Venue Section */
+        .venue-content {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+            max-width: 96rem;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 1024px) {
+            .venue-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .venue-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .venue-card {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .venue-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .venue-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: var(--accent);
+            margin-right: 0.75rem;
+        }
+
+        .venue-list {
+            list-style: none;
+        }
+
+        .venue-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: var(--muted-foreground);
+        }
+
+        .venue-list .venue-icon {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .campus-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .campus-item {
+            background: hsl(214, 100%, 59%, 0.2);
+            border-radius: var(--radius);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .campus-item svg {
+            width: 2rem;
+            height: 2rem;
+            color: var(--accent);
+            margin: 0 auto 0.5rem;
+        }
+
+        .campus-item .feature-title {
+            font-weight: 600;
+        }
+
+        .campus-description {
+            text-align: center;
+            color: var(--muted-foreground);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-section h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section button {
+            background: none;
+            border: none;
+            color: var(--muted-foreground);
+            cursor: pointer;
+            transition: color 0.3s;
+            font-family: inherit;
+            text-align: left;
+        }
+
+        .footer-section button:hover {
+            color: var(--foreground);
+        }
+
+        .footer-section li {
+            display: flex;
+            align-items: center;
+            color: var(--muted-foreground);
+        }
+
+        .footer-section li svg {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-brand .logo {
+            gap: 0.5rem;
+        }
+
+        .footer-brand .logo span {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .footer-brand p {
+            color: var(--muted-foreground);
+        }
+
+        .footer-copyright {
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--muted-foreground);
+        }
+
+        /* Icons (simplified SVG) */
+        .icon {
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            vertical-align: middle;
+            fill: currentColor;
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="logo">Technova</div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="themes.html">Themes</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav class="nav container">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect width="16" height="10" x="2" y="3" rx="2" ry="2"/>
+                    <path d="m7 11 5-5 5 5"/>
+                    <path d="m7 17 5-5 5 5"/>
+                </svg>
+                <h1>TechNova <span class="accent">2025</span></h1>
+            </div>
+            <div class="nav-links">
+                <button onclick="scrollToSection('schedule')">Schedule</button>
+                <button onclick="scrollToSection('pricing')">Pricing</button>
+                <button onclick="scrollToSection('register')">Register</button>
+                <button onclick="scrollToSection('venue')">Venue</button>
+            </div>
+        </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-bg"></div>
         <div class="container">
-            <h1>Innovate. Create. Elevate.</h1>
-            <p>Join Technova and transform your ideas into reality.</p>
-            <a href="#pricing" class="btn">Get Started</a>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="date-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                            <path d="M8 2v4"/>
+                            <path d="M16 2v4"/>
+                            <rect width="18" height="18" x="3" y="4" rx="2"/>
+                            <path d="M3 10h18"/>
+                        </svg>
+                        September 19-20, 2025
+                    </div>
+                    <h1 class="hero-title">
+                        TechNova <span class="accent">2025</span>
+                        <div class="hero-subtitle">Innovation Unleashed</div>
+                    </h1>
+                    <p class="hero-description">
+                        Join the ultimate tech event featuring workshops, a 12-hour hackathon, and competitive coding. 
+                        Experience innovation at ANITS, Visakhapatnam.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToSection('register')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                            </svg>
+                            Register Now
+                        </button>
+                        <button class="btn btn-secondary" onclick="window.location.href='themes.html'">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            View Themes
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        </svg>
+                        <h3 class="feature-title">Workshops</h3>
+                        <p class="feature-description">Interactive learning sessions</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"/>
+                            <polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                        <h3 class="feature-title">Hackathon</h3>
+                        <p class="feature-description">12-hour coding marathon</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                            <path d="M4 22h16"/>
+                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                        </svg>
+                        <h3 class="feature-title">Coding Competition</h3>
+                        <p class="feature-description">Competitive programming challenge</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="features" class="features container">
-        <h2>Key Features</h2>
-        <div class="grid">
-            <div class="feature-item card">
-                <h3>Cutting-Edge Technology</h3>
-                <p>Leverage the latest tools and frameworks.</p>
+    <!-- Timeline Section -->
+    <section id="schedule" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Event <span class="accent">Timeline</span>
+                </h2>
+                <p class="section-description">
+                    Two days of intensive learning, coding, and competition
+                </p>
             </div>
-            <div class="feature-item card">
-                <h3>Collaborative Environment</h3>
-                <p>Work with a vibrant community of innovators.</p>
-            </div>
-            <div class="feature-item card">
-                <h3>Expert Mentorship</h3>
-                <p>Learn from industry leaders and seasoned professionals.</p>
+
+            <div class="timeline">
+                <!-- Day 1 -->
+                <div class="day">
+                    <div class="day-header">
+                        <div class="day-number">1</div>
+                        <h3 class="day-title">Day 1 - September 19, 2025</h3>
+                    </div>
+                    
+                    <div class="timeline-cards">
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <svg class="timeline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                                </svg>
+                                <h4 class="timeline-card-title">Workshop Sessions</h4>
+                            </div>
+                            <div class="timeline-details">
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                    Morning to Evening
+                                </div>
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                    </svg>
+                                    Interactive Learning
+                                </div>
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect width="20" height="14" x="2" y="3" rx="2"/>
+                                        <line x1="8" x2="16" y1="21" y2="21"/>
+                                        <line x1="12" x2="12" y1="17" y2="21"/>
+                                    </svg>
+                                    Hands-on Experience
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <svg class="timeline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"/>
+                                </svg>
+                                <h4 class="timeline-card-title">Hackathon Begins</h4>
+                            </div>
+                            <div class="timeline-details">
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                    6:00 PM
+                                </div>
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="16 18 22 12 16 6"/>
+                                        <polyline points="8 6 2 12 8 18"/>
+                                    </svg>
+                                    12-hour Marathon
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="day">
+                    <div class="day-header">
+                        <div class="day-number">2</div>
+                        <h3 class="day-title">Day 2 - September 20, 2025</h3>
+                    </div>
+                    
+                    <div class="timeline-cards three-cols">
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <svg class="timeline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect width="18" height="18" x="3" y="3" rx="2"/>
+                                </svg>
+                                <h4 class="timeline-card-title">Hackathon Ends</h4>
+                            </div>
+                            <div class="timeline-details">
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                    6:00 AM
+                                </div>
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                        <line x1="16" x2="8" y1="13" y2="13"/>
+                                        <line x1="16" x2="8" y1="17" y2="17"/>
+                                        <polyline points="10,9 9,9 8,9"/>
+                                    </svg>
+                                    Submission
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <svg class="timeline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="4 17 10 11 4 5"/>
+                                    <line x1="12" x2="20" y1="19" y2="19"/>
+                                </svg>
+                                <h4 class="timeline-card-title">Coding Competition</h4>
+                            </div>
+                            <div class="timeline-details">
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                    9:00 AM - 1:00 PM
+                                </div>
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                                        <path d="M4 22h16"/>
+                                        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                                        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                                        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                                    </svg>
+                                    Competitive Programming
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-card">
+                            <div class="timeline-card-header">
+                                <svg class="timeline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                                    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                                    <path d="M4 22h16"/>
+                                    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                                    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                                    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                                </svg>
+                                <h4 class="timeline-card-title">Valedictory</h4>
+                            </div>
+                            <div class="timeline-details">
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                    2:00 PM - 4:00 PM
+                                </div>
+                                <div class="timeline-detail">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                                        <path d="M4 22h16"/>
+                                        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                                        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                                        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                                    </svg>
+                                    Awards Ceremony
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="pricing" class="pricing container">
-        <h2>Pricing Plans</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Hackathon</h3>
-                <p>Perfect for competitive coding enthusiasts.</p>
-                <p>Team Size:</p>
-                <button class="btn team-size-btn" data-size="1">1</button>
-                <button class="btn team-size-btn" data-size="2">2</button>
-                <button class="btn team-size-btn" data-size="3">3</button>
-                <button class="btn team-size-btn" data-size="4">4</button>
-                <p id="pricing-display"></p>
-                <button class="btn registration-type-btn" data-type="hackathon">Register for Hackathon</button>
+    <!-- Registration Section -->
+    <section id="register" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Choose Your <span class="accent">Experience</span>
+                </h2>
+                <p class="section-description">
+                    Select your team size and registration type. Teams can have 1-4 members.
+                </p>
             </div>
-            <div class="card">
-                <h3>Coding Workshops</h3>
-                <p>Enhance your coding skills with hands-on sessions.</p>
-                <p>Team Size:</p>
-                <button class="btn team-size-btn" data-size="1">1</button>
-                <button class="btn team-size-btn" data-size="2">2</button>
-                <button class="btn team-size-btn" data-size="3">3</button>
-                <button class="btn team-size-btn" data-size="4">4</button>
-                <p id="pricing-display-coding"></p>
-                <button class="btn registration-type-btn" data-type="coding">Register for Coding</button>
+
+            <!-- Team Size Selector -->
+            <div class="team-selector">
+                <h3>Select Team Size</h3>
+                <div class="team-options">
+                    <div class="team-option selected" onclick="selectTeamSize(1)" data-size="1">
+                        <svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <div class="team-label">1 Member</div>
+                        <div class="team-subtitle">Solo</div>
+                    </div>
+                    <div class="team-option" onclick="selectTeamSize(2)" data-size="2">
+                        <svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <div class="team-label">2 Members</div>
+                        <div class="team-subtitle">Duo</div>
+                    </div>
+                    <div class="team-option" onclick="selectTeamSize(3)" data-size="3">
+                        <svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <div class="team-label">3 Members</div>
+                        <div class="team-subtitle">Trio</div>
+                    </div>
+                    <div class="team-option" onclick="selectTeamSize(4)" data-size="4">
+                        <svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <div class="team-label">4 Members</div>
+                        <div class="team-subtitle">Squad</div>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <h3>Combo Pack</h3>
-                <p>Access to both hackathons and coding workshops.</p>
-                <p>Team Size:</p>
-                <button class="btn team-size-btn" data-size="1">1</button>
-                <button class="btn team-size-btn" data-size="2">2</button>
-                <button class="btn team-size-btn" data-size="3">3</button>
-                <button class="btn team-size-btn" data-size="4">4</button>
-                <p id="pricing-display-combo"></p>
-                <button class="btn registration-type-btn" data-type="combo">Register for Combo</button>
+
+            <!-- Pricing Cards -->
+            <div id="pricing" class="pricing-grid">
+                <!-- Hackathon -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <svg class="pricing-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"/>
+                            <polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                        <h3 class="pricing-title">Hackathon</h3>
+                        <p class="pricing-subtitle">12-hour coding marathon + Workshop</p>
+                    </div>
+                    
+                    <div class="pricing-price">
+                        <div class="price-amount" id="hackathon-price">₹159</div>
+                        <div class="price-description" id="hackathon-desc">per person (1 member team)</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Day 1 Workshop Access
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            12-hour Hackathon
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Mentorship Support
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Certificate & Swag
+                        </li>
+                    </ul>
+                    
+                    <button class="btn btn-primary" onclick="openRegistration('hackathon')">
+                        Register for Hackathon
+                    </button>
+                </div>
+
+                <!-- Coding Competition -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <svg class="pricing-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="4 17 10 11 4 5"/>
+                            <line x1="12" x2="20" y1="19" y2="19"/>
+                        </svg>
+                        <h3 class="pricing-title">Coding Competition</h3>
+                        <p class="pricing-subtitle">Competitive programming challenge</p>
+                    </div>
+                    
+                    <div class="pricing-price">
+                        <div class="price-amount" id="coding-price">₹139</div>
+                        <div class="price-description" id="coding-desc">per person (1 member team)</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Day 2 Competition (9 AM - 1 PM)
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Multiple Problem Sets
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Live Leaderboard
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Prizes & Recognition
+                        </li>
+                    </ul>
+                    
+                    <button class="btn btn-primary" onclick="openRegistration('coding')">
+                        Register for Competition
+                    </button>
+                </div>
+
+                <!-- Combo -->
+                <div class="pricing-card featured">
+                    <div class="best-value">BEST VALUE</div>
+                    
+                    <div class="pricing-header">
+                        <svg class="pricing-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                        <h3 class="pricing-title">Combo Pass</h3>
+                        <p class="pricing-subtitle">Complete TechNova experience</p>
+                    </div>
+                    
+                    <div class="pricing-price">
+                        <div class="price-amount" id="combo-price">₹249</div>
+                        <div class="price-description" id="combo-desc">per person (1 member team)</div>
+                    </div>
+                    
+                    <ul class="pricing-features">
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Everything in Hackathon
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Everything in Coding Competition
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Priority Support
+                        </li>
+                        <li>
+                            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            Exclusive Networking
+                        </li>
+                    </ul>
+                    
+                    <button class="btn btn-primary" onclick="openRegistration('combo')">
+                        Register for Combo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Registration Links -->
+            <div class="registration-links" id="registration-links">
+                <div class="registration-box">
+                    <h3>Registration Details</h3>
+                    <p class="registration-message" id="registration-message">
+                        Please select a team size and registration type above to see registration links.
+                    </p>
+                    <div id="registration-content"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact container">
-        <h2>Contact Us</h2>
-        <p>Have questions? Reach out to us!</p>
-        <form class="form-group">
-            <input type="text" placeholder="Your Name">
-            <input type="email" placeholder="Your Email">
-            <textarea placeholder="Your Message"></textarea>
-            <button type="submit" class="btn">Send Message</button>
-        </form>
+    <!-- Venue Section -->
+    <section id="venue" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Event <span class="accent">Venue</span>
+                </h2>
+                <p class="section-description">
+                    Join us at the beautiful ANITS campus in Visakhapatnam
+                </p>
+            </div>
+
+            <div class="venue-content">
+                <div class="venue-details">
+                    <div class="venue-card">
+                        <h3>
+                            <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            Location
+                        </h3>
+                        <ul class="venue-list">
+                            <li>
+                                <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    <polyline points="9,22 9,12 15,12 15,22"/>
+                                </svg>
+                                Anil Neerukonda Institute of Technology & Sciences
+                            </li>
+                            <li>
+                                <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                                Sangivalasa, Bheemunipatnam
+                            </li>
+                            <li>
+                                <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                                Visakhapatnam, Andhra Pradesh 531162
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="venue-card">
+                        <h3>
+                            <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect width="20" height="14" x="2" y="3" rx="2"/>
+                                <line x1="8" x2="16" y1="21" y2="21"/>
+                                <line x1="12" x2="12" y1="17" y2="21"/>
+                            </svg>
+                            Facilities
+                        </h3>
+                        <ul class="venue-list">
+                            <li>
+                                <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                                High-speed Internet & WiFi
+                            </li>
+                            <li>
+                                <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                                Modern Computer Labs
+                            </li>
+                            <li>
+                                <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                                Food & Refreshments
+                            </li>
+                            <li>
+                                <svg class="venue-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                                24/7 Support Staff
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="campus-grid">
+                    <div class="campus-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                        <div class="feature-title">Modern Campus</div>
+                    </div>
+                    <div class="campus-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect width="20" height="14" x="2" y="3" rx="2"/>
+                            <line x1="8" x2="16" y1="21" y2="21"/>
+                            <line x1="12" x2="12" y1="17" y2="21"/>
+                        </svg>
+                        <div class="feature-title">Tech Infrastructure</div>
+                    </div>
+                    <div class="campus-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <div class="feature-title">Collaborative Spaces</div>
+                    </div>
+                    <div class="campus-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <div class="feature-title">Strategic Location</div>
+                    </div>
+                </div>
+                <p class="campus-description">
+                    Experience innovation in a world-class academic environment with state-of-the-art facilities 
+                    and breathtaking coastal views.
+                </p>
+            </div>
+        </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Technova. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect width="16" height="10" x="2" y="3" rx="2" ry="2"/>
+                            <path d="m7 11 5-5 5 5"/>
+                            <path d="m7 17 5-5 5 5"/>
+                        </svg>
+                        <span>TechNova 2025</span>
+                    </div>
+                    <p>Innovation unleashed through technology and collaboration.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><button onclick="scrollToSection('schedule')">Schedule</button></li>
+                        <li><button onclick="scrollToSection('pricing')">Pricing</button></li>
+                        <li><button onclick="scrollToSection('register')">Register</button></li>
+                        <li><button onclick="scrollToSection('venue')">Venue</button></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Events</h4>
+                    <ul>
+                        <li>Workshops</li>
+                        <li>Hackathon</li>
+                        <li>Coding Competition</li>
+                        <li>Valedictory</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            info@technova2025.com
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            +91 XXXXX XXXXX
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            ANITS, Visakhapatnam
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <p>&copy; 2025 TechNova. All rights reserved. | Organized by ANITS</p>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
     <script>
-        // Update pricing display for each card
-        function updatePricingDisplay(type, elementId) {
-            const pricingElement = document.getElementById(elementId);
-            if (!pricingElement) return;
-
-            const price = pricing[type][selectedTeamSize - 1];
-            pricingElement.textContent = `Price: $${price}`;
-        }
-
-        // Modify the existing updatePricing function to handle multiple pricing displays
-        const originalUpdatePricing = updatePricing;
-        updatePricing = () => {
-            originalUpdatePricing(); // Call the original function for the main pricing display
-            updatePricingDisplay("hackathon", "pricing-display");
-            updatePricingDisplay("coding", "pricing-display-coding");
-            updatePricingDisplay("combo", "pricing-display-combo");
+        // Pricing data
+        const pricing = {
+            hackathon: [159, 249, 339, 429],
+            coding: [139, 219, 299, 379],
+            combo: [249, 389, 529, 669]
         };
 
-        // Initial update when the page loads
-        document.addEventListener("DOMContentLoaded", () => {
+        let selectedTeamSize = 1;
+        let selectedRegistrationType = null;
+
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Team size selection
+        function selectTeamSize(size) {
+            selectedTeamSize = size;
+            
+            // Update UI
+            document.querySelectorAll('.team-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector(`[data-size="${size}"]`).classList.add('selected');
+            
+            // Update pricing
+            updatePricing();
+        }
+
+        // Update pricing display
+        function updatePricing() {
+            const hackathonPrice = pricing.hackathon[selectedTeamSize - 1];
+            const codingPrice = pricing.coding[selectedTeamSize - 1];
+            const comboPrice = pricing.combo[selectedTeamSize - 1];
+            
+            const teamText = selectedTeamSize === 1 ? '1 member team' : `${selectedTeamSize} member team`;
+            
+            document.getElementById('hackathon-price').textContent = `₹${hackathonPrice}`;
+            document.getElementById('hackathon-desc').textContent = `per person (${teamText})`;
+            
+            document.getElementById('coding-price').textContent = `₹${codingPrice}`;
+            document.getElementById('coding-desc').textContent = `per person (${teamText})`;
+            
+            document.getElementById('combo-price').textContent = `₹${comboPrice}`;
+            document.getElementById('combo-desc').textContent = `per person (${teamText})`;
+        }
+
+        // Registration handling
+        function openRegistration(type) {
+            selectedRegistrationType = type;
+            const registrationLinks = document.getElementById('registration-links');
+            const registrationMessage = document.getElementById('registration-message');
+            const registrationContent = document.getElementById('registration-content');
+            
+            let typeText = type === 'hackathon' ? 'Hackathon' : 
+                         type === 'coding' ? 'Coding Competition' : 'Combo Pass';
+            
+            let price = pricing[type][selectedTeamSize - 1];
+            let teamText = selectedTeamSize === 1 ? '1 member' : `${selectedTeamSize} members`;
+            
+            registrationMessage.innerHTML = `
+                <strong>${typeText}</strong> registration for <strong>${teamText}</strong><br>
+                Total: <strong>₹${price} per person</strong>
+            `;
+            
+            registrationContent.innerHTML = `
+                <p style="margin-bottom: 1rem;">Registration will open soon. Stay tuned for updates!</p>
+                <button class="btn btn-primary" style="width: 100%;" onclick="alert('Registration opens soon!')">
+                    Notify Me When Registration Opens
+                </button>
+            `;
+            
+            registrationLinks.classList.add('visible');
+            registrationLinks.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize pricing on page load
+        document.addEventListener('DOMContentLoaded', function() {
             updatePricing();
         });
     </script>
